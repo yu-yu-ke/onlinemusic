@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.UserMapper">
+
+	<insert id="insert">
+		insert into user
+		(user_name, user_password, vip_id,
+		user_birthday, user_gender, type_id)
+		values
+		(#{userName},
+		#{userPassword}, #{vipId}, #{userBirthday}, #{userGender}, #{typeId})
+	</insert>
+
+	<select id="listAll" resultType="user">
+		select * from user
+	</select>
+</mapper>
