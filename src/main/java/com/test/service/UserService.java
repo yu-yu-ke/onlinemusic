@@ -14,12 +14,12 @@ public class UserService {
 
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	public Boolean register(String userName, String userPassword, Integer vipId, Date userBirthday, String userGender,
 			Integer typeId) {
-	
+
 		User user = new User();
-		
+
 		// 数据封装
 		user.setTypeId(typeId);
 		user.setUserName(userName);
@@ -27,18 +27,22 @@ public class UserService {
 		user.setVipId(vipId);
 		user.setUserBirthday(userBirthday);
 		user.setUserGender(userGender);
-		try{
+		try {
 			userMapper.insert(user);
 			return true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	public List<User> listAll() {
 		return userMapper.listAll();
-    }
+	}
+
+	public List<User> selectById(int userId) {
+		return userMapper.selectById(userId);
+	}
 
 }

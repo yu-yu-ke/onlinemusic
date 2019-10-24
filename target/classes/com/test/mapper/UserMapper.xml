@@ -13,7 +13,13 @@
 		#{userPassword}, #{vipId}, #{userBirthday}, #{userGender}, #{typeId})
 	</insert>
 
-	<select id="listAll" resultType="user">
+	<select id="listAll" resultType="User" >
 		select * from user
+	</select>
+	
+	<select id="selectById" resultType="user">
+		select *,vip,type_name 
+		from user,vip,songtype
+		where user_id = #{userId} and user.vip_id = vip.vip_id and user.type_id = songtype.type_id
 	</select>
 </mapper>

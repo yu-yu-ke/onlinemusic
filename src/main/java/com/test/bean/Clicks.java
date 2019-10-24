@@ -2,7 +2,7 @@ package com.test.bean;
 
 import java.util.Date;
 
-public class Clikcks {
+public class Clicks {
 	private Integer clickId;
     private Integer userId;
     private String userName;

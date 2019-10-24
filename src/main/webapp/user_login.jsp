@@ -54,7 +54,7 @@
 <script src="${ctx}/resources/js/userlogin/EasePack.min.js"></script>
 <script src="${ctx}/resources/js/userlogin/rAF.js"></script>
 <script src="${ctx}/resources/js/userlogin/demo-1.js"></script>
-<script src="${ctx}/resources/js/jquery/jquery-3.2.1.js"></script>
+<script src="${ctx}/resources/js/jquery/jquery-3.2.1stat.js"></script>
 <script src="${ctx}/resources/js/layer/layer.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -67,7 +67,7 @@
                 success:function (msg) {
                     if (msg.code==200) {
                         layer.msg(msg.code);
-                        window.location.href="${ctx}/UserUtilServlet?state=userInfo";
+                        window.location.href="${ctx}/userInfo";
                     }else {
                         alert(msg.message);
                         window.location.href="${ctx}/user_login.jsp";

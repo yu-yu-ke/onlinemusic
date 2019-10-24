@@ -2,8 +2,10 @@ package com.test.mapper;
 
 import java.util.List;
 
-import com.test.bean.SongType;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.test.bean.SongType;
+@Mapper
 public interface SongTypeMapper {
 
 	/**
