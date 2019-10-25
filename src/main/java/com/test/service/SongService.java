@@ -19,24 +19,10 @@ public class SongService {
 	@Autowired
 	private ClicksMapper clicksMapper;
 
-	public List<Song> hotDownload() {
-		List<Song> songList = songMapper.getClick();
-		List<Song> list = new ArrayList<>();
-		for (Song song : songList) {
-			Song songDisplayBeans = songMapper.getSongDisplay(song.getSongId());
-			list.add(songDisplayBeans);
-		}
-
-		return list;
-	}
-
 	public List<Song> selectById(Integer songId) {
 		List<Song> list = songMapper.getSongById(songId);
 		return list;
 	}    
-	
-	
-	
 
 	public List<Song> selectAll() {
 		List<Song> list = songMapper.selectAll();
@@ -51,6 +37,21 @@ public class SongService {
 			songList.add(songMapper.getSongDisplay(song.getSongId()));
 		}
 		return list;
+	}
+
+	public List<Song> hotDownload() {
+		List<Song> songList = songMapper.getClick();
+		
+		List<Song> list = new ArrayList<>();
+		for (Song song : songList) {
+			Song songDisplayBeans = songMapper.getSongDisplay(song.getSongId());
+			list.add(songDisplayBeans);
+		}
+		return list;
+	}
+	
+	public List<Song> selectSongByTypeId(Integer typeId) {
+        return songMapper.selectSongByTypeId(typeId);
 	}
 
 }

@@ -11,7 +11,7 @@
 		(#{userId},#{songId},#{clickDate});
 	</insert>
 
-	<select id="getSongId">
+	<select id="getSongId" resultType="song">
 		select song_id from clicks group by song_id order by count(*) desc limit 10
 	</select>
 	

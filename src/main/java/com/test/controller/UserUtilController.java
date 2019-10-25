@@ -52,4 +52,13 @@ public class UserUtilController {
 //            request.getRequestDispatcher("/page/user/user_tips_jsp").forward(request,response);
         }
     }
+	
+	@RequestMapping("/signOut")
+	public String signOut(HttpSession session) {
+		
+        session.removeAttribute("userLoginId");
+
+//        request.getRequestDispatcher("./index.jsp").forward(request,response);
+        return "forward:/index.jsp";
+    }
 }

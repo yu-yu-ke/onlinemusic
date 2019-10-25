@@ -2,38 +2,53 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.test.mapper.SongMapper">
-  	
+<mapper namespace="com.test.mapper.SongMapper">
+
 	<select id="getClick" resultType="song">
-		select song_id from download group by song_id order by count(*) desc limit 10
+		select song_id from download
+		group by song_id order by count(*) desc limit 10
 	</select>
 	
+
 	<select id="getSongDisplay" resultType="song">
-		select song_id,song_name,song_singer,type_name,song_clicks,song_download,song_uptime 
-        from song,songtype 
-        where song.type_id = songtype.type_id and 
-        song_id = #{songId}
+		select
+		song_id,song_name,song_singer,type_name,song_clicks,song_download,song_uptime
+		from song,songtype
+		where song.type_id = songtype.type_id and
+		song_id =
+		#{songId}
 	</select>
 
 	<update id="update">
-		update song set song_clicks = song_clicks + 1 where song_id = #{songId}
+		update song set song_clicks = song_clicks + 1 where
+		song_id = #{songId}
 	</update>
-	
-	<select id="getSongById">
+
+	<select id="getSongById" resultType="song">
 		select * from song where song_id = #{songId}
 	</select>
-	
-	<select id="selectAll">
-		select song_id,song_name,song_singer,type_name,song_size,song_url,song_format,song_clicks,song_download,song_uptime,vip 
-        from song,vip,songtype 
-        where 
-        song.vip_id = vip.vip_id and song.type_id = songtype.type_id
+
+	<select id="selectAll" resultType="song">
+		select
+		song_id,song_name,song_singer,type_name,song_size,song_url,song_format,song_clicks,song_download,song_uptime,vip
+		from song,vip,songtype
+		where
+		song.vip_id = vip.vip_id and song.type_id =
+		songtype.type_id
 	</select>
-	
+
 
 	<update id="downloadUpdate">
-		update song 
-		set song_download = song_download + 1 
+		update song
+		set song_download = song_download + 1
 		where song_id = #{songId}
 	</update>
-  </mapper>
+
+	<select id="selectSongByTypeId" resultType="song">
+		select
+		song_id,song_name,song_singer,type_name,song_clicks,song_download,song_uptime
+		from song,songtype
+		where song.type_id = songtype.type_id and
+		songtype.type_id = #{typeId}
+	</select>
+</mapper>

@@ -65,7 +65,7 @@
                         </li>
                         <c:forEach var="songtypeBean" items="${songtypeBeanList }">
                             <li>
-                                <a class="J_menuItem" href="${ctx}/SongUtilServlet?state=querySongByTypeId&typeId=<c:out value="${songtypeBean.type_id }" />"   data-index="0"><c:out value="${songtypeBean.type_name }" /></a>
+                                <a class="J_menuItem" href="${ctx}/querySongByTypeId?typeId=<c:out value="${songtypeBean.typeId }" />"   data-index="0"><c:out value="${songtypeBean.typeName }" /></a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -117,7 +117,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="${ctx}/UserUtilServlet?state=signOut" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="${ctx}/signOut" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/querySongs" frameborder="0" data-id="${ctx}/querySongs" seamless>
@@ -228,12 +228,12 @@
 
                 <div id="tab-2" class="tab-pane">
                     <div>
-                        <a href="/hotSearch">热搜</a>
+                        <a href="<c:url value='/hotSearch'/>">热搜</a>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans1 }">
                             <div class="sidebar-message">
                                 <div class="pull-left text-center">
                                     <div class="img-circle message-avatar">
-                                        <td align="center"><c:out value="${songDisplayBean.song_url }" /></td>
+                                        <td align="center"><c:out value="${songDisplayBean.songUrl }" /></td>
                                     </div>
 
                                     <div class="m-t-xs">
@@ -243,24 +243,24 @@
                                 </div>
                                 <div class="media-body">
                                     <div align="center">
-                                        <h5><c:out value="${songDisplayBean.song_name }" /></h5>
+                                        <h5><c:out value="${songDisplayBean.songName }" /></h5>
                                     </div>
                                     <div align="center">
-                                        <a href="/click&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx }/click?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-heart-o"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="/listen&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx }/listen?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-headphones"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="/download&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx }/download?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     </div>
                                     <br>
                                     <small class="text-muted">
-                                        歌手:<c:out value="${songDisplayBean.song_singer }" />
+                                        歌手:<c:out value="${songDisplayBean.songSinger }" />
                                     </small>
                                 </div>
                             </div>
@@ -270,12 +270,12 @@
 
                 <div id="tab-3" class="tab-pane">
                     <div>
-                        <a href="/hotDownload">热载</a>
+                        <a href="<c:url value='/hotDownload'/>">热载</a>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans2 }">
                             <div class="sidebar-message">
                                 <div class="pull-left text-center">
                                     <div class="img-circle message-avatar">
-                                        <td align="center"><c:out value="${songDisplayBean.song_url }" /></td>
+                                        <td align="center"><c:out value="${songDisplayBean.songUrl }" /></td>
                                     </div>
 
                                     <div class="m-t-xs">
@@ -285,10 +285,10 @@
                                 </div>
                                 <div class="media-body">
                                     <div align="center">
-                                        <h5><c:out value="${songDisplayBean.song_name }" /></h5>
+                                        <h5><c:out value="${songDisplayBean.songName }" /></h5>
                                     </div>
                                     <div align="center">
-                                        <a href="/click&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx}/click&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-heart-o"></i>
                                         </a>
                                         <%--<input type="hidden" name="song_id" value="<c:out value="${songDisplayBean.song_id }" />"/>--%>
@@ -296,17 +296,17 @@
                                             <%--<i class="fa fa-heart-o"></i>--%>
                                         <%--</div>--%>
                                         &nbsp;&nbsp;
-                                        <a href="/listen&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx }/listen&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-headphones"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="/download&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                        <a href="${ctx }/download&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     </div>
                                     <br>
                                     <small class="text-muted">
-                                        歌手:<c:out value="${songDisplayBean.song_singer }" />
+                                        歌手:<c:out value="${songDisplayBean.songSinger }" />
                                     </small>
                                 </div>
                             </div>

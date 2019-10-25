@@ -56,19 +56,6 @@ public class SongUtilController {
         return "forward:/index.jsp";
     }
 	
-	@RequestMapping("/hotDownload")
-	public String hotDownload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-       
-		List<Song> songDisplayBeans = songService.hotDownload();
-        Integer size = songDisplayBeans.size();
-        for (int i=1;i<=size;i++){
-            songDisplayBeans.get(i-1).setSongUrl(i + "");
-        }
-        request.setAttribute("songDisplayBeans2",songDisplayBeans);
-//        request.getRequestDispatcher("/index.jsp").forward(request,response);
-        return "forward:/index.jsp";
-    }
-	
 	@RequestMapping("/click")
     public String click(HttpSession session, HttpServletRequest request) {
         
@@ -78,15 +65,14 @@ public class SongUtilController {
             //在点击（click）表插入一条点击记录，
             //将歌曲（song）表中与song_id对应的记录的点击次数加一
             clicksService.click((Integer) userId, songId);
-
         }
 
 //        request.getRequestDispatcher("/SongUtilServlet?state=querySongs").forward(request,response);
-        return "forward:/querySongs";
+        return "redirect:querySongs";
     }
 	
 	@RequestMapping("/listen")
-    public void listen(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void listen(HttpServletRequest request, HttpServletResponse response) {
         Integer songId = Integer.parseInt(request.getParameter("song_id"));
         List<Song> songs = songService.selectById(songId);
         String songUrl = songs.get(0).getSongUrl();
@@ -95,12 +81,12 @@ public class SongUtilController {
         String listenSongUrl = "." + substring;
 
         request.setAttribute("listenSongUrl",listenSongUrl);
-        this.querySongs(request,response);
+        this.querySongs(request);
     }
 	
 	
 	@RequestMapping("/querySongs")
-	public String querySongs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String querySongs(HttpServletRequest request) {
         List<Song> songDisplayBeans = songService.selectAll();
         Integer size = songDisplayBeans.size();
         for (int i=1;i<=size;i++){
@@ -109,10 +95,11 @@ public class SongUtilController {
         request.setAttribute("songDisplayBeans",songDisplayBeans);
         
 //        request.getRequestDispatcher("/page/song/song_index_jsp").forward(request,response);
-        return "forward:/page/song/song_index.jsp";
+//        return "forward:/jsp/song/song_index.jsp";
+        return "song/hello";
     }
 	
-	@RequestMapping("/hotSerach")
+	@RequestMapping("/hotSearch")
 	public String hotSearch(HttpServletRequest request) {
         List<Song> songDisplayBeans = songService.hotSearch();
         Integer size = songDisplayBeans.size();
@@ -124,8 +111,18 @@ public class SongUtilController {
         return "forward:/index.jsp";
     }
 	
-	
-	
+	@RequestMapping("/hotDownload")
+	public String hotDownload(HttpServletRequest request ) {
+       
+		List<Song> songDisplayBeans = songService.hotDownload();
+        Integer size = songDisplayBeans.size();
+        for (int i=1;i<=size;i++){
+            songDisplayBeans.get(i-1).setSongUrl(i + "");
+        }
+        request.setAttribute("songDisplayBeans2",songDisplayBeans);
+//        request.getRequestDispatcher("/index.jsp").forward(request,response);
+        return "forward:/index.jsp";
+    }
 	
 	@RequestMapping("/download")
 	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -151,7 +148,7 @@ public class SongUtilController {
                 request.setAttribute("user_id",(Integer)loginId);
                 request.setAttribute("song_id",songId);
                 request.setAttribute("purchaseInfo",purchaseInfo);
-                request.getRequestDispatcher("/jsp/user/purchase_jsp").forward(request,response);
+                request.getRequestDispatcher("/jsp/user/purchase.jsp").forward(request,response);
             }
         }
     }
@@ -188,5 +185,18 @@ public class SongUtilController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+	
+	@RequestMapping("/querySongByTypeId")
+	public String querySongByTypeId(Integer typeId, HttpServletRequest request) {
+        List<Song> songDisplayBeans = songService.selectSongByTypeId(typeId);
+        Integer size = songDisplayBeans.size();
+        for (int i=1;i<=size;i++){
+            songDisplayBeans.get(i-1).setSongUrl(i + "");
+        }
+
+        request.setAttribute("songDisplayBeans",songDisplayBeans);
+        // request.getRequestDispatcher("/page/song/song_byTypeId_jsp").forward(request,response);
+        return "song/song_byTypeId";
     }
 }

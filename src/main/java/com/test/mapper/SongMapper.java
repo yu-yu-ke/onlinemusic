@@ -19,6 +19,8 @@ public interface SongMapper {
 	List<Song> selectAll();
 
 	Boolean downloadUpdate(Integer songId);
+
+	List<Song> selectSongByTypeId(Integer typeId);
 	
 	
 	
