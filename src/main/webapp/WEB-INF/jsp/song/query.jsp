@@ -32,26 +32,26 @@
                         </tr>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans }">
                             <tr>
-                                <td align="center"><c:out value="${songDisplayBean.song_url }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songUrl }" /></td>
                                 <td align="center">
-                                    <a href="/UserUtilServlet?state=click&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/click&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-heart-o"></i>
                                     </a>
                                     &nbsp;&nbsp;
-                                    <a href="/UserUtilServlet?state=listen&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/listen&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-headphones"></i>
                                     </a>
                                     &nbsp;&nbsp;
-                                    <a href="/UserUtilServlet?state=download&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/download&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
-                                <td><c:out value="${songDisplayBean.song_name }" /></td>
-                                <td><c:out value="${songDisplayBean.song_singer }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.type_name }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_clicks }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_download }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_uptime }" /></td>
+                                <td><c:out value="${songDisplayBean.songName }" /></td>
+                                <td><c:out value="${songDisplayBean.songSinger }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.typeName }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songClicks }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songDownload }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songUptime }" /></td>
                             </tr>
                         </c:forEach>
                     </table>

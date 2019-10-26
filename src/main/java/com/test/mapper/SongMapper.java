@@ -21,6 +21,8 @@ public interface SongMapper {
 	Boolean downloadUpdate(Integer songId);
 
 	List<Song> selectSongByTypeId(Integer typeId);
+
+	List<Song> fuzzyQuery(String queryInfo);
 	
 	
 	

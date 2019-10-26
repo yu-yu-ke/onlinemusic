@@ -8,7 +8,7 @@
 		select song_id from download
 		group by song_id order by count(*) desc limit 10
 	</select>
-	
+
 
 	<select id="getSongDisplay" resultType="song">
 		select
@@ -25,7 +25,8 @@
 	</update>
 
 	<select id="getSongById" resultType="song">
-		select * from song where song_id = #{songId}
+		select * from song where
+		song_id = #{songId}
 	</select>
 
 	<select id="selectAll" resultType="song">
@@ -50,5 +51,14 @@
 		from song,songtype
 		where song.type_id = songtype.type_id and
 		songtype.type_id = #{typeId}
+	</select>
+
+	<select id="fuzzyQuery" resultType="song">
+		SELECT * FROM ( SELECT
+		song_id,song_name,song_singer,type_name,song_clicks,
+		song_download,song_uptime FROM song,songtype WHERE song.type_id =
+		songtype.type_id )
+		AS QUERY WHERE query.song_name LIKE '%#{queryInfo}%' OR
+		query.song_singer LIKE '%#{queryInfo}%' OR query.type_name LIKE '%#{queryInfo}%';
 	</select>
 </mapper>

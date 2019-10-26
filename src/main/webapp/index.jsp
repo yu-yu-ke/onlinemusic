@@ -48,7 +48,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="${ctx}/userInfo" data-index="0">用户信息</a>
+                            <a class="J_menuItem" href="${ctx}/UserUtilController/userInfo" data-index="0">用户信息</a>
                         </li>
                     </ul>
                 </li>
@@ -61,11 +61,11 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${ctx}/querySongType">音乐类别</a>
+                            <a href="${ctx}/SongUtilController/querySongType">音乐类别</a>
                         </li>
                         <c:forEach var="songtypeBean" items="${songtypeBeanList }">
                             <li>
-                                <a class="J_menuItem" href="${ctx}/querySongByTypeId?typeId=<c:out value="${songtypeBean.typeId }" />"   data-index="0"><c:out value="${songtypeBean.typeName }" /></a>
+                                <a class="J_menuItem" href="${ctx}/SongUtilController/querySongByTypeId?typeId=<c:out value="${songtypeBean.typeId }" />"   data-index="0"><c:out value="${songtypeBean.typeName }" /></a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -96,7 +96,7 @@
 
             <nav class="page-tabs J_menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="${ctx}/querySongs">首页</a>
+                    <a href="javascript:;" class="active J_menuTab" data-id="${ctx}/SongUtilController/querySongs">首页</a>
                 </div>
             </nav>
 
@@ -117,10 +117,10 @@
                     </li>
                 </ul>
             </div>
-            <a href="${ctx}/signOut" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="${ctx}/UserUtilController/signOut" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/querySongs" frameborder="0" data-id="${ctx}/querySongs" seamless>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/SongUtilController/querySongs" frameborder="0" data-id="${ctx}/SongUtilController/querySongs" seamless>
 
             </iframe>
         </div>
@@ -228,7 +228,7 @@
 
                 <div id="tab-2" class="tab-pane">
                     <div>
-                        <a href="<c:url value='/hotSearch'/>">热搜</a>
+                        <a href="<c:url value='/SongUtilController/hotSearch'/>">热搜</a>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans1 }">
                             <div class="sidebar-message">
                                 <div class="pull-left text-center">
@@ -246,15 +246,15 @@
                                         <h5><c:out value="${songDisplayBean.songName }" /></h5>
                                     </div>
                                     <div align="center">
-                                        <a href="${ctx }/click?song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx }/SongUtilController/click?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-heart-o"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="${ctx }/listen?song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx }/SongUtilController/listen?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-headphones"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="${ctx }/download?song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx }/SongUtilController/download?song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     </div>
@@ -270,7 +270,7 @@
 
                 <div id="tab-3" class="tab-pane">
                     <div>
-                        <a href="<c:url value='/hotDownload'/>">热载</a>
+                        <a href="<c:url value='/SongUtilController/hotDownload'/>">热载</a>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans2 }">
                             <div class="sidebar-message">
                                 <div class="pull-left text-center">
@@ -288,7 +288,7 @@
                                         <h5><c:out value="${songDisplayBean.songName }" /></h5>
                                     </div>
                                     <div align="center">
-                                        <a href="${ctx}/click&song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx}/SongUtilController/click&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-heart-o"></i>
                                         </a>
                                         <%--<input type="hidden" name="song_id" value="<c:out value="${songDisplayBean.song_id }" />"/>--%>
@@ -296,11 +296,11 @@
                                             <%--<i class="fa fa-heart-o"></i>--%>
                                         <%--</div>--%>
                                         &nbsp;&nbsp;
-                                        <a href="${ctx }/listen&song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx }/SongUtilController/listen&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-headphones"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="${ctx }/download&song_id=<c:out value="${songDisplayBean.songId }" />">
+                                        <a href="${ctx }/SongUtilController/download&song_id=<c:out value="${songDisplayBean.songId }" />">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     </div>

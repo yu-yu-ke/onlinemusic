@@ -54,4 +54,8 @@ public class SongService {
         return songMapper.selectSongByTypeId(typeId);
 	}
 
+	public List<Song> fuzzyQuery(String queryInfo) {
+        return songMapper.fuzzyQuery(queryInfo);
+	}
+
 }

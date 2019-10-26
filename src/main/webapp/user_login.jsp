@@ -63,11 +63,11 @@
                 type:"post",//提交方式
                 dataType: "json",//预期服务器返回的数据类型
                 data:$('#form1').serialize(),//传输的数据
-                url:"${ctx}/userLogin",//传输路径
+                url:"${ctx}/LoginController/userLogin",//传输路径
                 success:function (msg) {
                     if (msg.code==200) {
                         layer.msg(msg.code);
-                        window.location.href="${ctx}/userInfo";
+                        window.location.href="${ctx}/UserUtilController/userInfo";
                     }else {
                         alert(msg.message);
                         window.location.href="${ctx}/user_login.jsp";

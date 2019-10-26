@@ -30,7 +30,7 @@ public class LoginController {
 	private UserService userService;
 	
 	@ResponseBody
-	@RequestMapping("/adminLogin")
+	@RequestMapping("/LoginController/adminLogin")
 	public R adminLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adminName = request.getParameter("adminName");
         String adminPassword = request.getParameter("adminPassword");
@@ -54,7 +54,7 @@ public class LoginController {
         return r;
     }
 	
-	@RequestMapping("/userLogin")
+	@RequestMapping("/LoginController/userLogin")
 	private R userLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String userName = request.getParameter("userName");

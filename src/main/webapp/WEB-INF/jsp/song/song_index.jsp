@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="hr-line-dashed"></div>
-<form  class="form-horizontal" method="post" action="/SongUtilServlet?state=query">
+<form  class="form-horizontal" method="post" action="${ctx }/SongUtilController/query">
     <div class="col-sm-10" align="right">
         <input type="text" name="queryInfo"/>
         <div class="btn btn-primary">
@@ -42,29 +42,29 @@
                         </tr>
                         <c:forEach var="songDisplayBean" items="${songDisplayBeans }">
                             <tr>
-                                <td align="center"><c:out value="${songDisplayBean.song_url }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songUrl }" /></td>
                                 <td align="center">
-                                    <a href="/SongUtilServlet?state=click&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/click&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-heart-o"></i>
                                     </a>
                                     &nbsp;&nbsp;
-                                    <a href="/SongUtilServlet?state=listen&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/listen&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-headphones"></i>
                                     </a>
                                     &nbsp;&nbsp;
-                                    <a href="/SongUtilServlet?state=download&song_id=<c:out value="${songDisplayBean.song_id }" />">
+                                    <a href="${ctx }/SongUtilController/download&song_id=<c:out value="${songDisplayBean.songId }" />">
                                         <i class="fa fa-download"></i>
                                     </a>
                                     <%--<a href="/resources/upload/15cbd4ca-9856-46ff-8407-fffbb62acc1e.mp3">--%>
                                         <%--<i class="fa fa-download"></i>--%>
                                     <%--</a>--%>
                                 </td>
-                                <td><c:out value="${songDisplayBean.song_name }" /></td>
-                                <td><c:out value="${songDisplayBean.song_singer }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.type_name }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_clicks }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_download }" /></td>
-                                <td align="center"><c:out value="${songDisplayBean.song_uptime }" /></td>
+                                <td><c:out value="${songDisplayBean.songName }" /></td>
+                                <td><c:out value="${songDisplayBean.songSinger }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.typeName }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songClicks }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songDownload }" /></td>
+                                <td align="center"><c:out value="${songDisplayBean.songUptime }" /></td>
                             </tr>
                         </c:forEach>
                     </table>

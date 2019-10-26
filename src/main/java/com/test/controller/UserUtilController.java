@@ -33,11 +33,11 @@ public class UserUtilController {
 
         request.setAttribute("songtypeList",songtypeList);
         
-        return "/jsp/user/user_register.jsp";
+        return "user/user_register";
 //        request.getRequestDispatcher("/jsp/user/user_register.jsp").forward(request,response);
     }
 	
-	@RequestMapping("/userInfo")
+	@RequestMapping("/UserUtilController/userInfo")
 	public String userInfo(HttpSession session, Model model) throws ServletException, IOException {
         Object userId = session.getAttribute("userLoginId");
 
@@ -48,12 +48,12 @@ public class UserUtilController {
             return "forward:/jsp/user/user_index.jsp";
 //            request.getRequestDispatcher("/page/user/user_index_jsp").forward(request,response);
         }else {
-        	return "forward:/jsp/user/user_tips.jsp";
+        	return "user/user_tips";
 //            request.getRequestDispatcher("/page/user/user_tips_jsp").forward(request,response);
         }
     }
 	
-	@RequestMapping("/signOut")
+	@RequestMapping("/UserUtilController/signOut")
 	public String signOut(HttpSession session) {
 		
         session.removeAttribute("userLoginId");

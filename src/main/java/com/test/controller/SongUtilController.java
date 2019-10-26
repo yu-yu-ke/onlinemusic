@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.bean.Song;
@@ -47,7 +48,7 @@ public class SongUtilController {
 	@Autowired
 	private DownloadService downloadService;
 	
-	@RequestMapping("/querySongType")
+	@RequestMapping("/SongUtilController/querySongType")
 	public String querySongType(Model model) {
         List<SongType> songtypeBeanList = songTypeService.listAll();
 
@@ -56,7 +57,7 @@ public class SongUtilController {
         return "forward:/index.jsp";
     }
 	
-	@RequestMapping("/click")
+	@RequestMapping("/SongUtilController/click")
     public String click(HttpSession session, HttpServletRequest request) {
         
         Object userId = session.getAttribute("userLoginId");
@@ -71,7 +72,7 @@ public class SongUtilController {
         return "redirect:querySongs";
     }
 	
-	@RequestMapping("/listen")
+	@RequestMapping("/SongUtilController/listen")
     public void listen(HttpServletRequest request, HttpServletResponse response) {
         Integer songId = Integer.parseInt(request.getParameter("song_id"));
         List<Song> songs = songService.selectById(songId);
@@ -85,7 +86,7 @@ public class SongUtilController {
     }
 	
 	
-	@RequestMapping("/querySongs")
+	@RequestMapping("/SongUtilController/querySongs")
 	public String querySongs(HttpServletRequest request) {
         List<Song> songDisplayBeans = songService.selectAll();
         Integer size = songDisplayBeans.size();
@@ -96,10 +97,10 @@ public class SongUtilController {
         
 //        request.getRequestDispatcher("/page/song/song_index_jsp").forward(request,response);
 //        return "forward:/jsp/song/song_index.jsp";
-        return "song/hello";
+        return "song/song_index";
     }
 	
-	@RequestMapping("/hotSearch")
+	@RequestMapping("/SongUtilController/hotSearch")
 	public String hotSearch(HttpServletRequest request) {
         List<Song> songDisplayBeans = songService.hotSearch();
         Integer size = songDisplayBeans.size();
@@ -111,7 +112,7 @@ public class SongUtilController {
         return "forward:/index.jsp";
     }
 	
-	@RequestMapping("/hotDownload")
+	@RequestMapping("/SongUtilController/hotDownload")
 	public String hotDownload(HttpServletRequest request ) {
        
 		List<Song> songDisplayBeans = songService.hotDownload();
@@ -124,7 +125,7 @@ public class SongUtilController {
         return "forward:/index.jsp";
     }
 	
-	@RequestMapping("/download")
+	@RequestMapping("/SongUtilController/download")
 	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         Integer songId = Integer.parseInt(request.getParameter("song_id"));
@@ -187,7 +188,7 @@ public class SongUtilController {
         }
     }
 	
-	@RequestMapping("/querySongByTypeId")
+	@RequestMapping("/SongUtilController/querySongByTypeId")
 	public String querySongByTypeId(Integer typeId, HttpServletRequest request) {
         List<Song> songDisplayBeans = songService.selectSongByTypeId(typeId);
         Integer size = songDisplayBeans.size();
@@ -199,4 +200,20 @@ public class SongUtilController {
         // request.getRequestDispatcher("/page/song/song_byTypeId_jsp").forward(request,response);
         return "song/song_byTypeId";
     }
+	
+	@PostMapping("/SongUtilController/query")
+	public String querySongByTypeId(String queryInfo, HttpServletRequest request) {
+		List<Song> songDisplayBeans = songService.fuzzyQuery(queryInfo);
+		Integer size = songDisplayBeans.size();
+		for (int i = 1; i <= size; i++) {
+			songDisplayBeans.get(i - 1).setSongUrl(i + "");
+		}
+
+		// System.out.println(queryInfo);
+		// System.out.println(size);
+
+		request.setAttribute("songDisplayBeans", songDisplayBeans);
+//		request.getRequestDispatcher("/page/song/query_jsp").forward(request, response);
+		return "song/query";
+	}
 }
